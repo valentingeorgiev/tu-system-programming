@@ -202,12 +202,13 @@ void server_operations(int sockfd) {
 					}
 				}
 				
-				if (count_ip == 9) {
-					printf("IP %s has tried to enter 10 times with user profile: %s\n", user.ip, user.username);
-				}
-				
 				if ((strcmp(previous_username, user.username) == 0) && (strcmp(previous_ip, user.ip) == 0)) {
 					count_ip++;
+				}
+
+				if (count_ip == 9) {
+					printf("IP %s has tried to enter 10 times with user profile: %s\n", user.ip, user.username);
+					count_ip = 0;
 				}
 				
 				strcpy(log.status, "f");
